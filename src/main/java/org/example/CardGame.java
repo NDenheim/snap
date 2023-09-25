@@ -1,64 +1,27 @@
 package org.example;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.example.Card.*;
+
 public class CardGame {
+//    private static final List<Card> deckOfCards = new ArrayList<>();
     private static final ArrayList<Card> deckOfCards = new ArrayList<>();
-    private static int value;
+
+    private static int cardValue;
     private static String suit;
     private static String symbol;
-
-    private static final ArrayList<String> suits = new ArrayList<>();
-
-    private static final ArrayList<String> symbols = new ArrayList<>();
-    private static final ArrayList<Integer> cardValues = new ArrayList<>();
-
-    static {
-        suits.add("Clubs");
-        suits.add("Diamonds");
-        suits.add("Hearts");
-        suits.add("Spades");
-    }
-
-    static {
-        symbols.add("Two");
-        symbols.add("Three");
-        symbols.add("Four");
-        symbols.add("Five");
-        symbols.add("Six");
-        symbols.add("Seven");
-        symbols.add("Eight");
-        symbols.add("Nine");
-        symbols.add("Ten");
-        symbols.add("Jack");
-        symbols.add("Queen");
-        symbols.add("King");
-        symbols.add("Ace");
-    }
-
-    static {
-        cardValues.add(2);
-        cardValues.add(3);
-        cardValues.add(4);
-        cardValues.add(5);
-        cardValues.add(6);
-        cardValues.add(7);
-        cardValues.add(8);
-        cardValues.add(9);
-        cardValues.add(10);
-        cardValues.add(11);
-        cardValues.add(12);
-        cardValues.add(13);
-        cardValues.add(14);
-    }
 
     static {
 
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 4; ++j) {
-                deckOfCards.add(new Card(cardValues.get(i), suits.get(j), symbols.get(i)));
+                deckOfCards.add(new Card(cardValues.get(i) , suits.get(j), symbols.get(i)));
             }
 
         }
@@ -74,11 +37,14 @@ public class CardGame {
         for (Card card : deckOfCards) {
             System.out.println(card.toString());
         }
+        System.out.println(deckOfCards.size());
     }
 
     public Card dealCard(){
-        System.out.println(deckOfCards.get(0));
-        return deckOfCards.get(0);
+        Card topCard = deckOfCards.get(0);
+        System.out.println(topCard);
+        deckOfCards.remove(topCard);
+        return topCard;
     }
 
     public ArrayList<Card> sortDeckInNumberOrder(){
@@ -86,9 +52,20 @@ public class CardGame {
     }
 
     public ArrayList<Card> sortDeckIntoSuits(){
-        return (ArrayList<Card>) deckOfCards.stream().collect( Collectors.groupingBy(card -> suits,
-                Collectors.counting() ) );
+        ArrayList<Card> sortedList = (ArrayList<Card>) deckOfCards.stream().sorted().collect(Collectors.toList());
+        System.out.println(sortedList);
+        return sortedList;
+    }
 
+    public ArrayList<Card> shuffleDeck() {
+//        List<ArrayList<Card>> deckList = Arrays.asList(deckOfCards);
+//        Collections.shuffle(deckList);
+//        deckList.toArray();
+//        System.out.println(deckList);
+//        return deckOfCards;
+        Collections.shuffle(deckOfCards);
+        System.out.println(deckOfCards);
+        return deckOfCards;
     }
 }
 

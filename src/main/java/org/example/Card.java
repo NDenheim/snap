@@ -11,8 +11,16 @@ public class Card {
     private String symbol;
     private int cardValue;
 
-    private static final ArrayList<String> symbols = new ArrayList<>();
-    private static final ArrayList<Integer> cardValues = new ArrayList<>();
+    public static final ArrayList<String> suits = new ArrayList<>();
+    public static final ArrayList<String> symbols = new ArrayList<>();
+    public static final ArrayList<Integer> cardValues = new ArrayList<>();
+
+    static {
+        suits.add("Clubs");
+        suits.add("Diamonds");
+        suits.add("Hearts");
+        suits.add("Spades");
+    }
 
     static {
         symbols.add("Two");
@@ -46,9 +54,6 @@ public class Card {
         cardValues.add(14);
     }
 
-    public Card (){
-
-    }
     public Card (int cardValue, String suit, String symbol){
         this.cardValue = cardValue;
         this.suit = suit;
@@ -87,6 +92,8 @@ public class Card {
         }
         return this.symbol;
     }
+
+
 
 
     @Override

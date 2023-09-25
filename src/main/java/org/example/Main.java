@@ -4,14 +4,20 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        CardGame cards = new CardGame();
-        cards.getDeck();
+        CardGame snap = new CardGame();
+        snap.getDeck();
         System.out.println("Top card:");
-        cards.dealCard();
+        snap.dealCard();
         System.out.println("Sorted in number order");
         System.out.println("Sorted in suit order");
-        cards.sortDeckIntoSuits();
-        cards.getDeck();
+//        snap.sortDeckIntoSuits();
+//        snap.getDeck();
+        snap.shuffleDeck();
+        snap.shuffleDeck();
+//        snap.sortDeckIntoSuits();
+        snap.dealCard();
+        snap.dealCard();
+        snap.getDeck();
 
     }
 }
