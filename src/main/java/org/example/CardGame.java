@@ -1,17 +1,14 @@
 package org.example;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.example.Card.*;
 
-public class CardGame {
+public abstract class CardGame {
 //    private static final List<Card> deckOfCards = new ArrayList<>();
-    private static final ArrayList<Card> deckOfCards = new ArrayList<>();
+    public static ArrayList<Card> deckOfCards = new ArrayList<>();
 
     private static int cardValue;
     private static String suit;
@@ -32,7 +29,6 @@ public class CardGame {
     public CardGame() {
     }
 
-
     public void getDeck(){
         for (Card card : deckOfCards) {
             System.out.println(card.toString());
@@ -44,27 +40,26 @@ public class CardGame {
         Card topCard = deckOfCards.get(0);
         System.out.println(topCard);
         deckOfCards.remove(topCard);
+//        deckOfCards.add(topCard);
         return topCard;
     }
 
     public ArrayList<Card> sortDeckInNumberOrder(){
-        return (ArrayList<Card>) deckOfCards.stream().sorted((a,b)-> a.getCardValue() - b.getCardValue());
+
+        deckOfCards = (ArrayList<Card>) deckOfCards.stream().sorted((a, b)-> a.getCardValue() - b.getCardValue()).collect(Collectors.toList());
+        System.out.println(deckOfCards);
+        return deckOfCards;
     }
 
-    public ArrayList<Card> sortDeckIntoSuits(){
-        ArrayList<Card> sortedList = (ArrayList<Card>) deckOfCards.stream().sorted().collect(Collectors.toList());
-        System.out.println(sortedList);
-        return sortedList;
+    public List<Card> sortDeckIntoSuits(){
+        deckOfCards = (ArrayList<Card>) deckOfCards.stream().sorted((a, b)->a.cardValue - b.cardValue).sorted((a, b)-> a.getSuit().compareTo(b.getSuit())).collect(Collectors.toList());
+        System.out.println(deckOfCards);
+        return deckOfCards;
     }
 
     public ArrayList<Card> shuffleDeck() {
-//        List<ArrayList<Card>> deckList = Arrays.asList(deckOfCards);
-//        Collections.shuffle(deckList);
-//        deckList.toArray();
-//        System.out.println(deckList);
-//        return deckOfCards;
         Collections.shuffle(deckOfCards);
-        System.out.println(deckOfCards);
+//        System.out.println(deckOfCards);
         return deckOfCards;
     }
 }

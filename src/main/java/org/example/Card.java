@@ -6,10 +6,10 @@ import java.util.Collections;
 
 public class Card {
 
-    private String suit;
+    public String suit;
 //    private String symbol = Arrays.toString(Symbols.values());
-    private String symbol;
-    private int cardValue;
+    public String symbol;
+    public int cardValue;
 
     public static final ArrayList<String> suits = new ArrayList<>();
     public static final ArrayList<String> symbols = new ArrayList<>();
@@ -54,6 +54,8 @@ public class Card {
         cardValues.add(14);
     }
 
+    public Card(){}
+
     public Card (int cardValue, String suit, String symbol){
         this.cardValue = cardValue;
         this.suit = suit;
@@ -96,12 +98,17 @@ public class Card {
 
 
 
+//    @Override
+//    public String toString() {
+//        return "Card{" +
+//                "suit='" + suit + '\'' +
+//                ", symbol='" + symbol + '\'' +
+//                ", value=" + cardValue +
+//                '}';
+//    }
+
     @Override
     public String toString() {
-        return "Card{" +
-                "suit='" + suit + '\'' +
-                ", symbol='" + symbol + '\'' +
-                ", value=" + cardValue +
-                '}';
+        return symbol + " of " + suit;
     }
 }
