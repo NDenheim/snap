@@ -2,9 +2,8 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
 
-        Snap snap = new Snap();
+//        Snap snap = new Snap();
 //        snap.getDeck();
 //        System.out.println("\nTop card:\n");
 //        snap.dealCard();
@@ -18,7 +17,9 @@ public class Main {
 //        snap.sortDeckIntoSuits();
 //        snap.getDeck();
 
-        snap.runGame();
+//        snap.runGame();
+
+        Commands.runCommands();
 
     }
 }
