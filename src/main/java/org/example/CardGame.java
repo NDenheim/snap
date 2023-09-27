@@ -6,13 +6,13 @@ import java.util.stream.Collectors;
 
 import static org.example.Card.*;
 
-public abstract class CardGame {
+public class CardGame {
 //    private static final List<Card> deckOfCards = new ArrayList<>();
     public static ArrayList<Card> deckOfCards = new ArrayList<>();
 
-    private static int cardValue;
-    private static String suit;
-    private static String symbol;
+//    private static int cardValue;
+//    private static String suit;
+//    private static String symbol;
 
     static {
 
@@ -40,7 +40,7 @@ public abstract class CardGame {
         Card topCard = deckOfCards.get(0);
         System.out.println(topCard);
         deckOfCards.remove(topCard);
-//        deckOfCards.add(topCard);
+        deckOfCards.add(topCard);
         return topCard;
     }
 
@@ -63,12 +63,3 @@ public abstract class CardGame {
         return deckOfCards;
     }
 }
-
-
-
-
-//        cards.add("  ------\n" +
-//                " | 2    |\n" +
-//                " |   " + HEART+ "  |\n" +
-//                " |      |\n" +
-//                "  ------");

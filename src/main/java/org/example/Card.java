@@ -3,6 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 
 public class Card {
 
@@ -14,28 +15,31 @@ public class Card {
     public static final ArrayList<String> suits = new ArrayList<>();
     public static final ArrayList<String> symbols = new ArrayList<>();
     public static final ArrayList<Integer> cardValues = new ArrayList<>();
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+
 
     static {
-        suits.add("Clubs");
-        suits.add("Diamonds");
-        suits.add("Hearts");
-        suits.add("Spades");
+        suits.add("♣");
+        suits.add("♦");
+        suits.add("♥");
+        suits.add("♠");
     }
 
     static {
-        symbols.add("Two");
-        symbols.add("Three");
-        symbols.add("Four");
-        symbols.add("Five");
-        symbols.add("Six");
-        symbols.add("Seven");
-        symbols.add("Eight");
-        symbols.add("Nine");
-        symbols.add("Ten");
-        symbols.add("Jack");
-        symbols.add("Queen");
-        symbols.add("King");
-        symbols.add("Ace");
+        symbols.add("2");
+        symbols.add("3");
+        symbols.add("4");
+        symbols.add("5");
+        symbols.add("6");
+        symbols.add("7");
+        symbols.add("8");
+        symbols.add("9");
+        symbols.add("10");
+        symbols.add("J");
+        symbols.add("Q");
+        symbols.add("K");
+        symbols.add("A");
     }
 
     static {
@@ -107,8 +111,37 @@ public class Card {
 //                '}';
 //    }
 
+//    @Override
+//    public String toString() {
+//        return symbol + " of " + suit;
+//    }
+
     @Override
     public String toString() {
-        return symbol + " of " + suit;
+        if (Objects.equals(symbol, "10") && (Objects.equals(suit, "♦") || Objects.equals(suit, "♥"))){
+            return "  -------\n" +
+                    " | " + symbol + "    |\n" +
+                    " |   " + ANSI_RED + suit + ANSI_RESET + "   |\n" +
+                    " |       |\n" +
+                    "  -------";
+        } else if (Objects.equals(symbol, "10")){
+        return "  -------\n" +
+                " | " + symbol + "    |\n" +
+            " |   " + suit + "   |\n" +
+            " |       |\n" +
+            "  -------";
+        } else if (Objects.equals(suit, "♦") || Objects.equals(suit, "♥")){
+            return "  -------\n" +
+                    " | " + symbol + "     |\n" +
+                    " |   " + ANSI_RED + suit + ANSI_RESET + "   |\n" +
+                    " |       |\n" +
+                    "  -------";
+        } else {
+            return "  -------\n" +
+                    " | " + symbol + "     |\n" +
+                    " |   " + suit + "   |\n" +
+                    " |       |\n" +
+                    "  -------";
+        }
     }
 }
