@@ -34,18 +34,4 @@ public class Player {
         this.points = points;
     }
 
-
-    public int compareTo(Player other)
-    {
-        if (this.getPoints() == other.getPoints())
-        {
-            return 0;
-        }
-        else if (this.getPoints() > other.getPoints())
-        {
-            return 1;
-        }
-        else
-            return -1;
-    }
 }

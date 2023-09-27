@@ -193,18 +193,21 @@ public class Commands {
             chosenValue = scanner.next();
         }
 
-        if (chosenValue.equals("1")) {
-            chooseLevel();
-        } else if (chosenValue.equals("2")){
-            snap.runTwoPlayerGame(otherPlayer, currentPlayer);
-
-        } else if (chosenValue.equals("3")){
-            System.out.println("\n" + player1.getName() + ": " + player1.getPoints());
-            System.out.println(player2.getName() + ": " + player2.getPoints() + "\n");
-            runGameEndCommands();
-        } else {
-            System.out.println("\nThanks for playing!");
-            System.exit(0);
+        switch (chosenValue) {
+            case "1":
+                chooseLevel();
+                break;
+            case "2":
+                snap.runTwoPlayerGame(otherPlayer, currentPlayer);
+                break;
+            case "3":
+                System.out.println("\n" + player1.getName() + ": " + player1.getPoints());
+                System.out.println(player2.getName() + ": " + player2.getPoints());
+                runGameEndCommands();
+                break;
+            default:
+                System.out.println("\nThanks for playing!");
+                System.exit(0);
         }
 
     }

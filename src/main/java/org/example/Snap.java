@@ -17,12 +17,15 @@ public class Snap extends CardGame {
         System.out.println("Press enter to draw a card:");
         scanner.nextLine();
 
+
         currentCard = dealCard();
+        int counter = 1;
         while (Objects.equals(scanner.nextLine(), "")) {
+            counter++;
 
             nextCard = dealCard();
 
-            if (currentCard.cardValue == nextCard.cardValue){
+            if (currentCard.cardValue == nextCard.cardValue) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
@@ -33,8 +36,9 @@ public class Snap extends CardGame {
             } else {
                 currentCard = nextCard;
 
-                if (deckOfCards.isEmpty()){
+                if (counter == 52) {
                     System.out.println("\nAwks...you've run out of cards...wanna try again?");
+                    shuffleDeck();
                     Commands.runGameEndCommandsSinglePlayer();
                 }
             }
@@ -47,9 +51,11 @@ public class Snap extends CardGame {
         System.out.println(currentPlayer.getName() + "'s turn");
         scanner.nextLine();
         currentCard = dealCard();
+        int counter = 1;
         System.out.println(otherPlayer.getName() + "'s turn");
 
         while (Objects.equals(scanner.nextLine(), "")) {
+            counter++;
             nextCard = dealCard();
 
             checkCards(currentPlayer, otherPlayer);
@@ -57,6 +63,12 @@ public class Snap extends CardGame {
             currentPlayer = otherPlayer;
             otherPlayer = temp;
             System.out.println("\n" + otherPlayer.getName() + "'s turn");
+
+            if (counter == 52) {
+                System.out.println("\nAwks...you've run out of cards...wanna try again?");
+                shuffleDeck();
+                Commands.runGameEndCommands();
+            }
 
         }
     }
@@ -66,13 +78,20 @@ public class Snap extends CardGame {
         System.out.println("Press enter to draw a card:");
         scanner.nextLine();
         currentCard = dealCard();
+        int counter = 1;
         computerLogic();
 
         while (Objects.equals(scanner.nextLine(), "")) {
+            counter++;
             nextCard = dealCard();
             checkCards();
             computerLogic();
 
+            if (counter == 52) {
+                System.out.println("\nAwks...you've run out of cards...wanna try again?");
+                shuffleDeck();
+                Commands.runGameEndCommandsSinglePlayer();
+            }
         }
     }
 
@@ -88,10 +107,11 @@ public class Snap extends CardGame {
     }
 
     public void checkCards() throws IOException {
-        if (currentCard.cardValue == nextCard.cardValue){
+        if (currentCard.cardValue == nextCard.cardValue) {
             BufferedReader timer = new BufferedReader(new InputStreamReader(System.in));
             long startTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis() - startTime) < 3000 && !timer.ready()) {}
+            while ((System.currentTimeMillis() - startTime) < 3000 && !timer.ready()) {
+            }
 
             if (timer.ready() && Objects.equals(timer.readLine(), "snap")) {
                 System.out.println("\nWINNER WINNER!!");
@@ -102,61 +122,27 @@ public class Snap extends CardGame {
             }
         } else {
             currentCard = nextCard;
-
-            if (deckOfCards.isEmpty()){
-                System.out.println("Awks...you've run out of cards...wanna try again?");
-                Commands.runGameEndCommandsSinglePlayer();
-            }
         }
     }
 
     public void checkCards(Player currentPlayer, Player otherPlayer) throws IOException {
-        if (currentCard.cardValue == nextCard.cardValue){
+        if (currentCard.cardValue == nextCard.cardValue) {
             BufferedReader timer = new BufferedReader(new InputStreamReader(System.in));
             long startTime = System.currentTimeMillis();
-            while ((System.currentTimeMillis() - startTime) < 3000 && !timer.ready()) {}
+            while ((System.currentTimeMillis() - startTime) < 3000 && !timer.ready()) {
+            }
 
             if (timer.ready() && Objects.equals(timer.readLine(), "snap")) {
                 System.out.println(otherPlayer.getName() + " is the winner!");
-                otherPlayer.setPoints(otherPlayer.getPoints()+1);
-                Commands.runGameEndCommands();
-            } else if (timer.ready() && !Objects.equals(timer.readLine(), "snap")) {
-                System.out.println("\nNooooo " + otherPlayer.getName() + ", you didn't type snap! YOU LOSE!");
-                currentPlayer.setPoints(currentPlayer.getPoints()+1);
+                otherPlayer.setPoints(otherPlayer.getPoints() + 1);
                 Commands.runGameEndCommands();
             } else {
                 System.out.println("\nToo slow " + otherPlayer.getName() + "! YOU LOSE!");
-                currentPlayer.setPoints(currentPlayer.getPoints()+1);
+                currentPlayer.setPoints(currentPlayer.getPoints() + 1);
                 Commands.runGameEndCommands();
             }
         } else {
             currentCard = nextCard;
-
-            if (deckOfCards.isEmpty()){
-                System.out.println("Awks...you've run out of cards...wanna try again?");
-                Commands.runGameEndCommands();
-            }
         }
     }
-
-
-//    public void checkCards(){
-//        if (currentCard.cardValue == nextCard.cardValue){
-//            try {
-//                TimeUnit.SECONDS.sleep(1);
-//                System.out.println("SNAP - you win!");
-//                Commands.runGameEndCommands();
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } else {
-//            currentCard = nextCard;
-//
-//            if (deckOfCards.isEmpty()){
-//                System.out.println("Awks...you've run out of cards...wanna try again?");
-//                Commands.runGameEndCommands();
-//            }
-//        }
-//    }
-
 }

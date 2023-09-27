@@ -17,7 +17,15 @@ public class Main {
 //        snap.sortDeckInNumberOrder();
 //        System.out.println("\nTest suit:\n");
 //        snap.sortDeckIntoSuits();
+
 //        snap.getDeck();
+//        snap.dealCard();
+//        snap.dealCard();
+//        System.out.println("---------------");
+//        snap.getDeck();
+//        System.out.println("---------------");
+//        snap.getDeck();
+
 
 //        snap.runGame();
 

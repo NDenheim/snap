@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Card {
 
     public String suit;
-//    private String symbol = Arrays.toString(Symbols.values());
     public String symbol;
     public int cardValue;
 
@@ -58,7 +57,6 @@ public class Card {
         cardValues.add(14);
     }
 
-    public Card(){}
 
     public Card (int cardValue, String suit, String symbol){
         this.cardValue = cardValue;
@@ -70,51 +68,14 @@ public class Card {
         return suit;
     }
 
-    public void setSuit(String suit) {
-//        this.suit = suit;
-        for (int i = 0; i < Suit.values().length ; i++) {
-            this.suit = suit;
-        }
-    }
-
     public int getCardValue() {
         return cardValue;
     }
 
-    public void setCardValue() {
-//        this.cardValue = Symbols.ACE.getCardValue();
-        for (int i = 0; i < cardValues.size() ; i++) {
-            this.cardValue = cardValues.get(i);
-        }
-    }
-
     public String getSymbol() {
-        return setSymbol();
+        return symbol;
     }
 
-    public String setSymbol() {
-        for (int i = 0; i < symbols.size() ; i++) {
-            this.symbol = symbols.get(i);
-        }
-        return this.symbol;
-    }
-
-
-
-
-//    @Override
-//    public String toString() {
-//        return "Card{" +
-//                "suit='" + suit + '\'' +
-//                ", symbol='" + symbol + '\'' +
-//                ", value=" + cardValue +
-//                '}';
-//    }
-
-//    @Override
-//    public String toString() {
-//        return symbol + " of " + suit;
-//    }
 
     @Override
     public String toString() {
