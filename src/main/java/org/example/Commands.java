@@ -24,12 +24,20 @@ public class Commands {
             "Play against computer"
     };
 
+    public static final String[] endGameCommandsSinglePlayer = {
+            "Return to main menu",
+            "Play again",
+            "Quit"
+    };
+
     public static final String[] endGameCommands = {
             "Return to main menu",
             "Play again",
             "View points",
             "Quit"
     };
+
+    static int chosenLevel;
 
     public static Player getCurrentPlayer() {
         return currentPlayer;
@@ -86,7 +94,7 @@ public class Commands {
             printMessage((i+1) + ": " + levels[i]);
         }
 
-        int chosenLevel = scanner.nextInt();
+        chosenLevel = scanner.nextInt();
 
         if (chosenLevel == 1) {
             nameInput(player1);
@@ -103,7 +111,7 @@ public class Commands {
     public static void nameInput(Player player){
         System.out.println("Please enter your name:");
         player.setName(scanner.next());
-        System.out.println("Hello "+ player1.getName() + "! Glad you could join us! Press enter to draw a card");
+        System.out.println("Hello "+ player1.getName() + "! Glad you could join us!");
     }
 
     public static void nameInput(Player player1, Player player2){
@@ -130,6 +138,43 @@ public class Commands {
         } else {
             setCurrentPlayer(player2);
             setOtherPlayer(player1);
+        }
+    }
+
+    public static void runGameEndCommandsSinglePlayer() throws IOException {
+        System.out.println("\nPlease select one of the following:");
+        for (int i = 0; i < endGameCommandsSinglePlayer.length; i++) {
+            printMessage((i+1) + ": " + endGameCommandsSinglePlayer[i]);
+        }
+        String chosenValue = scanner.next();
+
+        while (!Objects.equals(chosenValue, "1") && !Objects.equals(chosenValue, "2") && !Objects.equals(chosenValue, "3")){
+            System.out.println("\nSorry that wasn't one of the options...try again!");
+            for (int i = 0; i < endGameCommandsSinglePlayer.length; i++) {
+                printMessage((i+1) + ": " + endGameCommandsSinglePlayer[i]);
+            }
+            chosenValue = scanner.next();
+        }
+
+        switch (chosenValue) {
+            case "1":
+                chooseLevel();
+                break;
+            case "2":
+                selectPlayAgain();
+                break;
+            case "3":
+                System.out.println("\nThanks for playing!");
+                System.exit(0);
+        }
+
+    }
+
+    public static void selectPlayAgain() throws IOException {
+        if (chosenLevel == 1){
+            snap.runOnePlayerGame();
+        } else if (chosenLevel == 3) {
+            snap.runVsComputerGame();
         }
     }
 

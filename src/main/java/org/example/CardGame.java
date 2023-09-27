@@ -10,23 +10,26 @@ public class CardGame {
 //    private static final List<Card> deckOfCards = new ArrayList<>();
     public static ArrayList<Card> deckOfCards = new ArrayList<>();
 
-//    private static int cardValue;
-//    private static String suit;
-//    private static String symbol;
 
-    static {
+//    static {
+//
+//        for (int i = 0; i < 13; i++) {
+//            for (int j = 0; j < 4; ++j) {
+//                deckOfCards.add(new Card(cardValues.get(i) , suits.get(j), symbols.get(i)));
+//            }
+//
+//        }
+//
+//    }
 
+    // CONSTRUCTOR NEEDS TO BE FILLED
+    public CardGame() {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 4; ++j) {
                 deckOfCards.add(new Card(cardValues.get(i) , suits.get(j), symbols.get(i)));
             }
 
         }
-
-    }
-
-    // CONSTRUCTOR NEEDS TO BE FILLED
-    public CardGame() {
     }
 
     public void getDeck(){
@@ -37,10 +40,12 @@ public class CardGame {
     }
 
     public Card dealCard(){
+        Random random = new Random();
         Card topCard = deckOfCards.get(0);
         System.out.println(topCard);
         deckOfCards.remove(topCard);
         deckOfCards.add(topCard);
+//        deckOfCards.add((random.nextInt(52)),topCard);
         return topCard;
     }
 

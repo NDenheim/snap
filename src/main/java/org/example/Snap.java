@@ -14,6 +14,7 @@ public class Snap extends CardGame {
 
     public void runOnePlayerGame() throws IOException {
         shuffleDeck();
+        System.out.println("Press enter to draw a card:");
         scanner.nextLine();
 
         currentCard = dealCard();
@@ -28,13 +29,13 @@ public class Snap extends CardGame {
                     throw new RuntimeException(e);
                 }
                 System.out.println("\nSNAP - you win!");
-                Commands.runGameEndCommands();
+                Commands.runGameEndCommandsSinglePlayer();
             } else {
                 currentCard = nextCard;
 
                 if (deckOfCards.isEmpty()){
                     System.out.println("\nAwks...you've run out of cards...wanna try again?");
-                    Commands.runGameEndCommands();
+                    Commands.runGameEndCommandsSinglePlayer();
                 }
             }
 
@@ -62,6 +63,7 @@ public class Snap extends CardGame {
 
     public void runVsComputerGame() throws IOException {
         shuffleDeck();
+        System.out.println("Press enter to draw a card:");
         scanner.nextLine();
         currentCard = dealCard();
         computerLogic();
@@ -93,17 +95,17 @@ public class Snap extends CardGame {
 
             if (timer.ready() && Objects.equals(timer.readLine(), "snap")) {
                 System.out.println("\nWINNER WINNER!!");
-                Commands.runGameEndCommands();
+                Commands.runGameEndCommandsSinglePlayer();
             } else {
                 System.out.println("\nToo slow! YOU LOSE!");
-                Commands.runGameEndCommands();
+                Commands.runGameEndCommandsSinglePlayer();
             }
         } else {
             currentCard = nextCard;
 
             if (deckOfCards.isEmpty()){
                 System.out.println("Awks...you've run out of cards...wanna try again?");
-                Commands.runGameEndCommands();
+                Commands.runGameEndCommandsSinglePlayer();
             }
         }
     }
